@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap';
 import {withRouter} from 'react-router';
 import axios from 'axios';
 import {BrowserRouter as Router, Route, Switch, useHistory,Redirect,Link} from "react-router-dom";
-import Register from './register';
+import Courseregister from './courseregister';
 import Course from './course';
 
 const Student = (props)=>{
@@ -58,14 +58,7 @@ const Student = (props)=>{
 </div>
     )
 } ></Route>
-            <Route exact path= {`/student/:studentid/registercourses`} render={()=> (<div>
-        
-        
-        course registeration done here
-
-</div>
-    )
-} ></Route>
+            <Route exact path= {`/student/:studentid/registercourses`}  ><Courseregister/></Route>
             <Route exact path= {`/student/:studentid/results`} render={()=> (<div>
         
         
