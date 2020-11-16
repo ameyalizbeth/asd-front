@@ -42,7 +42,11 @@ const Content =(props)=>{
             localStorage.setItem('token', res.token);
             localStorage.setItem('isloggedin', true);
             localStorage.setItem('user', res.userid);
-            history.push(`/admin/${username}`);
+            if(res.status === 'admin'){
+            history.push(`/admin/${username}`);}
+            else{
+              history.push(`/student/${username}`);
+            }
           }).catch(err=>console.log(err));
         }
         

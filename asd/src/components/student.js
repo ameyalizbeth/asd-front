@@ -6,17 +6,17 @@ import {BrowserRouter as Router, Route, Switch, useHistory,Redirect,Link} from "
 import Register from './register';
 import Course from './course';
 
-const Admin = (props)=>{
+const Student = (props)=>{
     // const { params: { adminid } } = match;
     let history = useHistory();
-   const username= props.match.params.adminid;
+   const username= props.match.params.studentid;
    console.log(props);
    const [name,setName] = useState('');
    const [email,setEmail] = useState('');
 //    console.log( JSON.stringify(match));
 
  useEffect(()=>{
-     fetch(`http://localhost:3000/admin/${username}`,{
+     fetch(`http://localhost:3000/student/${username}`,{
          headers:{
              Authorization:'Bearer '+localStorage.getItem('token') +' '+localStorage.getItem('user')
          }
@@ -42,23 +42,42 @@ const Admin = (props)=>{
     return (<div>
 
         <Router>
-            <Link to={`/admin/${username}/registerstudents`}>register students</Link>
-            <Link to={`/admin/${username}/registercourses`}>register courses</Link>
-            <Link to={`/admin/${username}/viewcourses`}>view courses</Link>
-            <Link to={`/admin/${username}/viewstudents`}>view students</Link>
-            <Link to={`/admin/${username}/results`}>publish results</Link>
-            <Link to={`/admin/${username}/viewresults`}>view results</Link>
-            <Link to={`/admin/${username}`}>  personel</Link>
+           
+            <Link to={`/student/${username}/registercourses`}> course registeration</Link>
+            
+            <Link to={`/student/${username}/certificates`}>upload certificates</Link>
+            <Link to={`/student/${username}/results`}>view results</Link>
+            <Link to={`/student/${username}`}>  personel</Link>
            
             <Switch>
-            <Route exact path= {`/admin/:adminid/registerstudents`}  ><Register /></Route>
-            <Route exact path= {`/admin/:adminid/registercourses`}  ><Course /></Route>
-            <Route exact path= {`/admin/:adminid/viewcourses`}  ><Course/></Route>
-            <Route exact path="/admin/:adminid" render={()=> (<div>
+            <Route exact path= {`/student/:studentid/certificates`}  render={()=> (<div>
         
         
-                hello {name} hope you have a great day this is your dashboard!!!!
-                email:{email}
+       upload certificates
+
+</div>
+    )
+} ></Route>
+            <Route exact path= {`/student/:studentid/registercourses`} render={()=> (<div>
+        
+        
+        course registeration done here
+
+</div>
+    )
+} ></Route>
+            <Route exact path= {`/student/:studentid/results`} render={()=> (<div>
+        
+        
+        results are uploaded here
+
+</div>
+    )
+} ></Route>
+            <Route exact path="/student/:studentid" render={()=> (<div>
+        
+        
+                hello {name} this is your dashboard .email:{email}
 
         </div>
             )
@@ -91,4 +110,4 @@ const Admin = (props)=>{
     }
 }
 
-export default withRouter(Admin);
+export default withRouter(Student);
