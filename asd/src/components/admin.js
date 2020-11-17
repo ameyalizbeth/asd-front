@@ -4,7 +4,9 @@ import {withRouter} from 'react-router';
 import axios from 'axios';
 import {BrowserRouter as Router, Route, Switch, useHistory,Redirect,Link} from "react-router-dom";
 import Register from './register';
+import Viewcourse from './viewcourse';
 import Course from './course';
+import Viewstudents from './viewstudents';
 
 const Admin = (props)=>{
     // const { params: { adminid } } = match;
@@ -53,7 +55,8 @@ const Admin = (props)=>{
             <Switch>
             <Route exact path= {`/admin/:adminid/registerstudents`}  ><Register /></Route>
             <Route exact path= {`/admin/:adminid/registercourses`}  ><Course /></Route>
-            <Route exact path= {`/admin/:adminid/viewcourses`}  ><Course/></Route>
+            <Route exact path= {`/admin/:adminid/viewcourses`}  ><Viewcourse/></Route>
+            <Route exact path= {`/admin/:adminid/viewstudents`}  ><Viewstudents/></Route>
             <Route exact path="/admin/:adminid" render={()=> (<div>
         
         

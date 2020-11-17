@@ -15,6 +15,7 @@ const Register =(props)=>{
           const  password=document.getElementById('password').value;
           const  name=document.getElementById('name').value;
           const  email=document.getElementById('email').value;
+          const  department=document.getElementById('department').value;
           const  currentsem=document.getElementById('currentsem').value;
       
           fetch('http://localhost:3000/register',{
@@ -30,6 +31,7 @@ const Register =(props)=>{
             name:name,
             email:email,
             currentsem:currentsem,
+            department:department,
             currentuser:props.match.params.adminid
       
 
@@ -69,6 +71,7 @@ const Register =(props)=>{
             <input type="text" name="username" id="username"/>
             <input type="text" name="password" id="password"/>
             <input type="text" name="currentsem" id="currentsem"/>
+            <input type="text" name="department" id="department"/>
             <button type="submit">register</button>
 
         </form>
