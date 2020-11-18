@@ -7,6 +7,7 @@ import Register from './register';
 import Viewcourse from './viewcourse';
 import Course from './course';
 import Viewstudents from './viewstudents';
+import Notification from './notifications';
 
 const Admin = (props)=>{
     // const { params: { adminid } } = match;
@@ -50,6 +51,7 @@ const Admin = (props)=>{
             <Link to={`/admin/${username}/viewstudents`}>view students</Link>
             <Link to={`/admin/${username}/results`}>publish results</Link>
             <Link to={`/admin/${username}/viewresults`}>view results</Link>
+            <Link to={`/admin/${username}/notification`}>add new notification</Link>
             <Link to={`/admin/${username}`}>  personel</Link>
            
             <Switch>
@@ -57,6 +59,7 @@ const Admin = (props)=>{
             <Route exact path= {`/admin/:adminid/registercourses`}  ><Course /></Route>
             <Route exact path= {`/admin/:adminid/viewcourses`}  ><Viewcourse/></Route>
             <Route exact path= {`/admin/:adminid/viewstudents`}  ><Viewstudents/></Route>
+            <Route exact path= {`/admin/:adminid/notification`}  ><Notification/></Route>
             <Route exact path="/admin/:adminid" render={()=> (<div>
         
         

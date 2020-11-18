@@ -1,10 +1,25 @@
 
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Switch, useHistory,Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, useHistory,Redirect, Link} from "react-router-dom";
 
 import {withRouter} from 'react-router';
 
 const Content =(props)=>{
+  useEffect(()=>{
+    fetch(`http://localhost:3000/notifications`,{
+        headers:{
+            Authorization:'Bearer '+localStorage.getItem('token') +' '+localStorage.getItem('user')
+        }
+    }).then(r=>r.json()).then(result=>{
+       console.log(result)
+   })
+       
+       .catch(err=>console.log(err));
+
+   
+
+
+});
     let history = useHistory();
 
     function login(e){
@@ -68,6 +83,12 @@ const Content =(props)=>{
       <input type="password" name="password" id="password"/>
       <button type="submit">submit</button>
       </form>
+
+      <div>
+        <Link to={'/notifications'}>view notifications</Link>
+      </div>
+
+      first five notification here
         </div>
     )
 

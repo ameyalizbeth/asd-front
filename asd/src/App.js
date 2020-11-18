@@ -5,7 +5,7 @@ import './App.css';
 import Content from './components/content';
 import Admin from './components/admin';
 import Student from './components/student';
-// import Register from './components/register';
+import Fullnotification from './components/fullnotification';
 import Error from './components/error';
 // import Signup from './components/signup';
 
@@ -24,7 +24,9 @@ function App() {
           <Route exact path={"/admin/:adminid/viewcourses"}   ><Admin /></Route>
           <Route exact path={"/admin/:adminid/results"}   ><Admin /></Route>
           <Route exact path={"/admin/:adminid/viewresults"}   ><Admin /></Route>
+          <Route exact path={"/admin/:adminid/notification"}   ><Admin /></Route>
           <Route path="/" exact component={() => <Content />} />
+          <Route path="/notifications" exact component={() => <Fullnotification />} />
           <Route exact path={"/student/:studentid"}   ><Student /></Route>
           <Route exact path={"/student/:studentid/registercourses"}   ><Student /></Route>
           <Route exact path={"/student/:studentid/certificates"}   ><Student /></Route>

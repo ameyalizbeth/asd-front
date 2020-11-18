@@ -14,9 +14,9 @@ const Viewstudents = ()=>{
     const username = [];
 
     function search(e){
-        console.log(dept);
-        console.log(semester);
-        console.log(user);
+        // console.log(dept);
+        // console.log(semester);
+        // console.log(user);
 
         e.preventDefault();
         fetch(`http://localhost:3000/students`,{
