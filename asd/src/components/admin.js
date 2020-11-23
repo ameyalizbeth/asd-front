@@ -14,9 +14,35 @@ const Admin = (props)=>{
     let history = useHistory();
    const username= props.match.params.adminid;
    console.log(props);
+   const [src,setSrc] = useState('');
    const [name,setName] = useState('');
    const [email,setEmail] = useState('');
 //    console.log( JSON.stringify(match));
+
+function setimage(e){
+    e.preventDefault();
+    
+    var data =  new FormData();
+    const  image=document.querySelector('input[type="file"]').files[0];
+    data.append('data',image);
+    console.log(image)
+    
+    fetch(`http://localhost:3000/admin/${username}/images`,{
+        method:"POST",
+        headers:{
+           
+            
+            Authorization:'Bearer '+localStorage.getItem('token') +' '+localStorage.getItem('user')
+        },
+        body: data
+
+    }).then(r=>r.json()).then(path=>{
+        console.log(path)
+        setSrc('http://localhost:3000/'+path.path)
+    }).catch(err=>{
+        console.log(err)
+    });
+}
 
  useEffect(()=>{
      fetch(`http://localhost:3000/admin/${username}`,{
@@ -24,8 +50,10 @@ const Admin = (props)=>{
              Authorization:'Bearer '+localStorage.getItem('token') +' '+localStorage.getItem('user')
          }
      }).then(r=>r.json()).then(result=>{
+         console.log(result.path);
         setName(result.name);
         setEmail(result.email);
+        setSrc('http://localhost:3000/'+result.path)
 
         // console.log(result);
     })
@@ -61,6 +89,24 @@ const Admin = (props)=>{
             <Route exact path= {`/admin/:adminid/viewstudents`}  ><Viewstudents/></Route>
             <Route exact path= {`/admin/:adminid/notification`}  ><Notification/></Route>
             <Route exact path="/admin/:adminid" render={()=> (<div>
+               <div>
+                   <form onSubmit={(e)=>{
+                       setimage(e)
+                   }} encType="multipart/form-data" >
+                       <input type="file" name="image" id="image"/>
+                       <button type="submit">set image</button>
+                   </form>
+               </div>
+               <div>
+                   
+                   <img style={{
+                       height:100,
+                       width:100
+
+                   }} src={src}/>
+                   
+                
+               </div>
         
         
                 hello {name} hope you have a great day this is your dashboard!!!!
